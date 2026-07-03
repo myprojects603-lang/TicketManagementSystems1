@@ -1,30 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './auth/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AuthGuard } from './auth/auth.guard';
-import { BusesComponent } from './management/buses/buses.component';
-import { RoutesComponent } from './management/routes/routes.component';
-import { SchedulesComponent } from './management/schedules/schedules.component';
-import { DriversComponent } from './management/drivers/drivers.component';
-import { HostessesComponent } from './management/hostesses/hostesses.component';
-import { BookingsComponent } from './booking/bookings.component';
-import { ReportsComponent } from './reports/reports.component';
-import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { BusesComponent } from './components/buses/buses.component';
+import { RoutesComponent } from './components/routes/routes.component';
+import { SchedulesComponent } from './components/schedules/schedules.component';
+import { BookingsComponent } from './components/bookings/bookings.component';
+import { ReportsComponent } from './components/reports/reports.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'buses', component: BusesComponent, canActivate: [AuthGuard] },
   { path: 'routes', component: RoutesComponent, canActivate: [AuthGuard] },
   { path: 'schedules', component: SchedulesComponent, canActivate: [AuthGuard] },
-  { path: 'drivers', component: DriversComponent, canActivate: [AuthGuard] },
-  { path: 'hostesses', component: HostessesComponent, canActivate: [AuthGuard] },
   { path: 'bookings', component: BookingsComponent, canActivate: [AuthGuard] },
-  { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: '/dashboard' }
+  { path: 'reports', component: ReportsComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
