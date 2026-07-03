@@ -1,322 +1,287 @@
-# Database Initialization Script with Seed Data
-# Run this script after creating the database schema
-
--- =============================================
--- DATABASE: TicketManagement
--- PURPOSE: Initialize with seed data
--- =============================================
+-- ========================================
+-- SEED DATA SCRIPT - 20+ ROWS EACH TABLE
+-- Ticket Management System
+-- INT Primary Keys (No GUIDs)
+-- ========================================
 
 USE [TicketManagement];
 GO
 
--- =============================================
--- 1. SEED USERS TABLE (20+ rows)
--- =============================================
-IF NOT EXISTS (SELECT 1 FROM Users WHERE UserId = 1)
-BEGIN
-    SET IDENTITY_INSERT Users ON;
-    
-    INSERT INTO Users (UserId, Email, PasswordHash, FirstName, LastName, PhoneNumber, IsActive, CreatedAt, UpdatedAt)
-    VALUES
-    (1, 'admin@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'Admin', 'User', '1001-000-0001', 1, GETDATE(), GETDATE()),
-    (2, 'john.smith@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'John', 'Smith', '1001-000-0002', 1, GETDATE(), GETDATE()),
-    (3, 'sarah.johnson@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'Sarah', 'Johnson', '1001-000-0003', 1, GETDATE(), GETDATE()),
-    (4, 'michael.brown@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'Michael', 'Brown', '1001-000-0004', 1, GETDATE(), GETDATE()),
-    (5, 'emily.davis@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'Emily', 'Davis', '1001-000-0005', 1, GETDATE(), GETDATE()),
-    (6, 'david.miller@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'David', 'Miller', '1001-000-0006', 1, GETDATE(), GETDATE()),
-    (7, 'jessica.wilson@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'Jessica', 'Wilson', '1001-000-0007', 1, GETDATE(), GETDATE()),
-    (8, 'robert.moore@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'Robert', 'Moore', '1001-000-0008', 1, GETDATE(), GETDATE()),
-    (9, 'amanda.taylor@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'Amanda', 'Taylor', '1001-000-0009', 1, GETDATE(), GETDATE()),
-    (10, 'chris.anderson@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'Christopher', 'Anderson', '1001-000-0010', 1, GETDATE(), GETDATE()),
-    (11, 'rachel.thomas@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'Rachel', 'Thomas', '1001-000-0011', 1, GETDATE(), GETDATE()),
-    (12, 'james.jackson@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'James', 'Jackson', '1001-000-0012', 1, GETDATE(), GETDATE()),
-    (13, 'laura.white@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'Laura', 'White', '1001-000-0013', 1, GETDATE(), GETDATE()),
-    (14, 'william.harris@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'William', 'Harris', '1001-000-0014', 1, GETDATE(), GETDATE()),
-    (15, 'sophia.martin@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'Sophia', 'Martin', '1001-000-0015', 1, GETDATE(), GETDATE()),
-    (16, 'daniel.garcia@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'Daniel', 'Garcia', '1001-000-0016', 1, GETDATE(), GETDATE()),
-    (17, 'olivia.rodriguez@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'Olivia', 'Rodriguez', '1001-000-0017', 1, GETDATE(), GETDATE()),
-    (18, 'matthew.jones@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'Matthew', 'Jones', '1001-000-0018', 1, GETDATE(), GETDATE()),
-    (19, 'ava.lee@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'Ava', 'Lee', '1001-000-0019', 1, GETDATE(), GETDATE()),
-    (20, 'ethan.walker@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'Ethan', 'Walker', '1001-000-0020', 1, GETDATE(), GETDATE()),
-    (21, 'isabella.hall@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'Isabella', 'Hall', '1001-000-0021', 1, GETDATE(), GETDATE()),
-    (22, 'mason.young@ticketmanagement.local', '$2a$11$K1HZtRYbqLfArclyJ7sZZ.vPrn2JeBT/r2mHmwKdlYJPVQ1CfQlGS', 'Mason', 'Young', '1001-000-0022', 1, GETDATE(), GETDATE());
-    
-    SET IDENTITY_INSERT Users OFF;
-END
+-- ========================================
+-- SEED USERS (22 rows)
+-- ========================================
+SET IDENTITY_INSERT [Users] ON;
+
+INSERT INTO [Users] ([UserId], [Email], [PasswordHash], [FullName], [IsActive], [CreatedAt])
+VALUES
+(1, 'admin@ticketmanagement.local', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'Admin User', 1, '2024-01-01'),
+(2, 'john.doe@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'John Doe', 1, '2024-01-02'),
+(3, 'jane.smith@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'Jane Smith', 1, '2024-01-02'),
+(4, 'michael.brown@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'Michael Brown', 1, '2024-01-03'),
+(5, 'emily.davis@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'Emily Davis', 1, '2024-01-03'),
+(6, 'robert.wilson@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'Robert Wilson', 1, '2024-01-04'),
+(7, 'sarah.miller@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'Sarah Miller', 1, '2024-01-04'),
+(8, 'david.moore@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'David Moore', 1, '2024-01-05'),
+(9, 'lisa.taylor@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'Lisa Taylor', 1, '2024-01-05'),
+(10, 'james.anderson@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'James Anderson', 1, '2024-01-06'),
+(11, 'jennifer.thomas@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'Jennifer Thomas', 1, '2024-01-06'),
+(12, 'william.jackson@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'William Jackson', 1, '2024-01-07'),
+(13, 'patricia.white@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'Patricia White', 1, '2024-01-07'),
+(14, 'charles.harris@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'Charles Harris', 1, '2024-01-08'),
+(15, 'karen.martin@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'Karen Martin', 1, '2024-01-08'),
+(16, 'richard.garcia@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'Richard Garcia', 1, '2024-01-09'),
+(17, 'nancy.rodriguez@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'Nancy Rodriguez', 1, '2024-01-09'),
+(18, 'thomas.lee@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'Thomas Lee', 1, '2024-01-10'),
+(19, 'dorothy.perez@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'Dorothy Perez', 1, '2024-01-10'),
+(20, 'christopher.edwards@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'Christopher Edwards', 1, '2024-01-11'),
+(21, 'margaret.collins@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'Margaret Collins', 1, '2024-01-11'),
+(22, 'daniel.stewart@email.com', 'AQAAAAEAAYagAAAAEKz+9JzN8K3R5mL2P9K3Q4E+N7R2K9Z8X4V5B6C7D8=', 'Daniel Stewart', 1, '2024-01-12');
+
+SET IDENTITY_INSERT [Users] OFF;
 GO
 
--- =============================================
--- 2. SEED BUSES TABLE (20+ rows)
--- =============================================
-IF NOT EXISTS (SELECT 1 FROM Buses WHERE BusId = 1)
-BEGIN
-    SET IDENTITY_INSERT Buses ON;
-    
-    INSERT INTO Buses (BusId, BusNumber, Model, Manufacturer, Capacity, Year, LicensePlate, IsActive, CreatedAt, UpdatedAt)
-    VALUES
-    (1, 'BUS001', 'Volvo B11R', 'Volvo', 50, 2020, 'TMS-001', 1, GETDATE(), GETDATE()),
-    (2, 'BUS002', 'Mercedes OH1526', 'Mercedes-Benz', 48, 2021, 'TMS-002', 1, GETDATE(), GETDATE()),
-    (3, 'BUS003', 'Tata 1518', 'Tata Motors', 45, 2022, 'TMS-003', 1, GETDATE(), GETDATE()),
-    (4, 'BUS004', 'Scania K360', 'Scania', 52, 2019, 'TMS-004', 1, GETDATE(), GETDATE()),
-    (5, 'BUS005', 'MAN TGX', 'MAN', 46, 2020, 'TMS-005', 1, GETDATE(), GETDATE()),
-    (6, 'BUS006', 'Volvo B7R', 'Volvo', 50, 2021, 'TMS-006', 1, GETDATE(), GETDATE()),
-    (7, 'BUS007', 'Ashok Leyland', 'Ashok Leyland', 42, 2020, 'TMS-007', 1, GETDATE(), GETDATE()),
-    (8, 'BUS008', 'Hyundai Universe', 'Hyundai', 48, 2022, 'TMS-008', 1, GETDATE(), GETDATE()),
-    (9, 'BUS009', 'Isuzu Giga', 'Isuzu', 44, 2021, 'TMS-009', 1, GETDATE(), GETDATE()),
-    (10, 'BUS010', 'Fuso Super Great', 'Mitsubishi', 40, 2020, 'TMS-010', 1, GETDATE(), GETDATE()),
-    (11, 'BUS011', 'Volvo B9R', 'Volvo', 51, 2022, 'TMS-011', 1, GETDATE(), GETDATE()),
-    (12, 'BUS012', 'Mercedes Actros', 'Mercedes-Benz', 47, 2021, 'TMS-012', 1, GETDATE(), GETDATE()),
-    (13, 'BUS013', 'Tata 1518L', 'Tata Motors', 45, 2020, 'TMS-013', 1, GETDATE(), GETDATE()),
-    (14, 'BUS014', 'Scania K410', 'Scania', 53, 2022, 'TMS-014', 1, GETDATE(), GETDATE()),
-    (15, 'BUS015', 'MAN TGA', 'MAN', 46, 2019, 'TMS-015', 1, GETDATE(), GETDATE()),
-    (16, 'BUS016', 'Volvo B10M', 'Volvo', 50, 2021, 'TMS-016', 1, GETDATE(), GETDATE()),
-    (17, 'BUS017', 'Ashok Leyland Viking', 'Ashok Leyland', 43, 2022, 'TMS-017', 1, GETDATE(), GETDATE()),
-    (18, 'BUS018', 'Hyundai County', 'Hyundai', 35, 2020, 'TMS-018', 1, GETDATE(), GETDATE()),
-    (19, 'BUS019', 'Isuzu ELF', 'Isuzu', 30, 2021, 'TMS-019', 1, GETDATE(), GETDATE()),
-    (20, 'BUS020', 'Fuso Canter', 'Mitsubishi', 28, 2020, 'TMS-020', 1, GETDATE(), GETDATE()),
-    (21, 'BUS021', 'Volvo FH12', 'Volvo', 50, 2022, 'TMS-021', 1, GETDATE(), GETDATE()),
-    (22, 'BUS022', 'Mercedes Setra', 'Mercedes-Benz', 55, 2021, 'TMS-022', 1, GETDATE(), GETDATE());
-    
-    SET IDENTITY_INSERT Buses OFF;
-END
+-- ========================================
+-- SEED BUSES (22 rows)
+-- ========================================
+SET IDENTITY_INSERT [Buses] ON;
+
+INSERT INTO [Buses] ([BusId], [BusNo], [Model], [Capacity], [Year], [IsActive], [CreatedAt])
+VALUES
+(1, 'BUS001', 'Volvo B11R', 55, 2022, 1, '2024-01-01'),
+(2, 'BUS002', 'Mercedes-Benz O500', 52, 2022, 1, '2024-01-01'),
+(3, 'BUS003', 'Tata Busaco', 45, 2021, 1, '2024-01-01'),
+(4, 'BUS004', 'Scania K360', 50, 2021, 1, '2024-01-02'),
+(5, 'BUS005', 'MAN TGX', 48, 2021, 1, '2024-01-02'),
+(6, 'BUS006', 'Volvo B9R', 55, 2020, 1, '2024-01-02'),
+(7, 'BUS007', 'Mercedes-Benz O405', 50, 2020, 1, '2024-01-03'),
+(8, 'BUS008', 'Ashok Leyland', 45, 2020, 1, '2024-01-03'),
+(9, 'BUS009', 'Hino S500', 42, 2019, 1, '2024-01-03'),
+(10, 'BUS010', 'Isuzu Giga', 40, 2019, 1, '2024-01-04'),
+(11, 'BUS011', 'Volvo B7R', 50, 2019, 1, '2024-01-04'),
+(12, 'BUS012', 'Scania K340', 48, 2019, 1, '2024-01-04'),
+(13, 'BUS013', 'Mercedes-Benz O345', 42, 2021, 1, '2024-01-05'),
+(14, 'BUS014', 'Tata Busaco Pro', 48, 2022, 1, '2024-01-05'),
+(15, 'BUS015', 'MAN TG410', 45, 2020, 1, '2024-01-05'),
+(16, 'BUS016', 'Volvo B12B', 52, 2022, 1, '2024-01-06'),
+(17, 'BUS017', 'Mercedes-Benz Tourismo', 50, 2021, 1, '2024-01-06'),
+(18, 'BUS018', 'Scania K280', 46, 2020, 1, '2024-01-06'),
+(19, 'BUS019', 'Ashok Leyland Boss', 42, 2019, 1, '2024-01-07'),
+(20, 'BUS020', 'Hino FC1J', 38, 2019, 1, '2024-01-07'),
+(21, 'BUS021', 'Isuzu Elf', 35, 2020, 1, '2024-01-07'),
+(22, 'BUS022', 'Volvo B10M', 48, 2021, 1, '2024-01-08');
+
+SET IDENTITY_INSERT [Buses] OFF;
 GO
 
--- =============================================
--- 3. SEED ROUTES TABLE (20+ rows)
--- =============================================
-IF NOT EXISTS (SELECT 1 FROM Routes WHERE RouteId = 1)
-BEGIN
-    SET IDENTITY_INSERT Routes ON;
-    
-    INSERT INTO Routes (RouteId, RouteName, StartLocation, EndLocation, Distance, BaseFare, Description, IsActive, CreatedAt, UpdatedAt)
-    VALUES
-    (1, 'New York - Boston', 'New York, NY', 'Boston, MA', 215, 45.00, 'Popular Northeast corridor', 1, GETDATE(), GETDATE()),
-    (2, 'Boston - Philadelphia', 'Boston, MA', 'Philadelphia, PA', 305, 55.00, 'Mid-Atlantic connection', 1, GETDATE(), GETDATE()),
-    (3, 'Philadelphia - Washington', 'Philadelphia, PA', 'Washington, DC', 140, 35.00, 'Capital connection', 1, GETDATE(), GETDATE()),
-    (4, 'Washington - Atlanta', 'Washington, DC', 'Atlanta, GA', 640, 85.00, 'Southeast major route', 1, GETDATE(), GETDATE()),
-    (5, 'Atlanta - Miami', 'Atlanta, GA', 'Miami, FL', 660, 95.00, 'Florida connection', 1, GETDATE(), GETDATE()),
-    (6, 'Chicago - Detroit', 'Chicago, IL', 'Detroit, MI', 280, 50.00, 'Midwest corridor', 1, GETDATE(), GETDATE()),
-    (7, 'Detroit - Toronto', 'Detroit, MI', 'Toronto, ON', 235, 40.00, 'Cross-border route', 1, GETDATE(), GETDATE()),
-    (8, 'Toronto - Montreal', 'Toronto, ON', 'Montreal, QC', 335, 60.00, 'Canada major route', 1, GETDATE(), GETDATE()),
-    (9, 'Montreal - Boston', 'Montreal, QC', 'Boston, MA', 305, 55.00, 'Northeast international', 1, GETDATE(), GETDATE()),
-    (10, 'Los Angeles - San Francisco', 'Los Angeles, CA', 'San Francisco, CA', 383, 75.00, 'California corridor', 1, GETDATE(), GETDATE()),
-    (11, 'San Francisco - Seattle', 'San Francisco, CA', 'Seattle, WA', 808, 110.00, 'Pacific coast route', 1, GETDATE(), GETDATE()),
-    (12, 'Seattle - Portland', 'Seattle, WA', 'Portland, OR', 174, 40.00, 'Pacific Northwest', 1, GETDATE(), GETDATE()),
-    (13, 'Portland - San Francisco', 'Portland, OR', 'San Francisco, CA', 635, 95.00, 'West coast south', 1, GETDATE(), GETDATE()),
-    (14, 'Denver - Dallas', 'Denver, CO', 'Dallas, TX', 1040, 130.00, 'Central US route', 1, GETDATE(), GETDATE()),
-    (15, 'Dallas - Houston', 'Dallas, TX', 'Houston, TX', 240, 45.00, 'Texas connector', 1, GETDATE(), GETDATE()),
-    (16, 'Houston - New Orleans', 'Houston, TX', 'New Orleans, LA', 348, 65.00, 'South Gulf route', 1, GETDATE(), GETDATE()),
-    (17, 'New Orleans - Memphis', 'New Orleans, LA', 'Memphis, TN', 450, 75.00, 'Mississippi valley', 1, GETDATE(), GETDATE()),
-    (18, 'Memphis - Chicago', 'Memphis, TN', 'Chicago, IL', 450, 75.00, 'Central US north', 1, GETDATE(), GETDATE()),
-    (19, 'Las Vegas - Los Angeles', 'Las Vegas, NV', 'Los Angeles, CA', 270, 50.00, 'Nevada corridor', 1, GETDATE(), GETDATE()),
-    (20, 'Phoenix - Las Vegas', 'Phoenix, AZ', 'Las Vegas, NV', 300, 55.00, 'Arizona connection', 1, GETDATE(), GETDATE()),
-    (21, 'San Diego - Los Angeles', 'San Diego, CA', 'Los Angeles, CA', 120, 25.00, 'Southern California', 1, GETDATE(), GETDATE()),
-    (22, 'Miami - Tampa', 'Miami, FL', 'Tampa, FL', 280, 50.00, 'Florida coast', 1, GETDATE(), GETDATE());
-    
-    SET IDENTITY_INSERT Routes OFF;
-END
+-- ========================================
+-- SEED ROUTES (22 rows)
+-- ========================================
+SET IDENTITY_INSERT [Routes] ON;
+
+INSERT INTO [Routes] ([RouteId], [RouteName], [StartLocation], [EndLocation], [Distance], [BaseFare], [IsActive], [CreatedAt])
+VALUES
+(1, 'New York to Boston', 'New York, NY', 'Boston, MA', 215, 45.00, 1, '2024-01-01'),
+(2, 'Chicago to Detroit', 'Chicago, IL', 'Detroit, MI', 280, 55.00, 1, '2024-01-01'),
+(3, 'Los Angeles to San Francisco', 'Los Angeles, CA', 'San Francisco, CA', 383, 65.00, 1, '2024-01-01'),
+(4, 'Dallas to Houston', 'Dallas, TX', 'Houston, TX', 239, 50.00, 1, '2024-01-02'),
+(5, 'Miami to Orlando', 'Miami, FL', 'Orlando, FL', 235, 48.00, 1, '2024-01-02'),
+(6, 'Philadelphia to Washington DC', 'Philadelphia, PA', 'Washington, DC', 140, 35.00, 1, '2024-01-02'),
+(7, 'Atlanta to Nashville', 'Atlanta, GA', 'Nashville, TN', 250, 52.00, 1, '2024-01-03'),
+(8, 'Seattle to Portland', 'Seattle, WA', 'Portland, OR', 174, 42.00, 1, '2024-01-03'),
+(9, 'Denver to Salt Lake City', 'Denver, CO', 'Salt Lake City, UT', 525, 85.00, 1, '2024-01-03'),
+(10, 'Phoenix to Las Vegas', 'Phoenix, AZ', 'Las Vegas, NV', 296, 60.00, 1, '2024-01-04'),
+(11, 'San Diego to Los Angeles', 'San Diego, CA', 'Los Angeles, CA', 120, 28.00, 1, '2024-01-04'),
+(12, 'Austin to San Antonio', 'Austin, TX', 'San Antonio, TX', 80, 22.00, 1, '2024-01-04'),
+(13, 'Minneapolis to Milwaukee', 'Minneapolis, MN', 'Milwaukee, WI', 340, 62.00, 1, '2024-01-05'),
+(14, 'Kansas City to St. Louis', 'Kansas City, MO', 'St. Louis, MO', 250, 50.00, 1, '2024-01-05'),
+(15, 'Pittsburgh to Cleveland', 'Pittsburgh, PA', 'Cleveland, OH', 135, 32.00, 1, '2024-01-05'),
+(16, 'Louisville to Cincinnati', 'Louisville, KY', 'Cincinnati, OH', 100, 25.00, 1, '2024-01-06'),
+(17, 'Charlotte to Atlanta', 'Charlotte, NC', 'Atlanta, GA', 245, 50.00, 1, '2024-01-06'),
+(18, 'Raleigh to Richmond', 'Raleigh, NC', 'Richmond, VA', 170, 38.00, 1, '2024-01-06'),
+(19, 'Birmingham to Memphis', 'Birmingham, AL', 'Memphis, TN', 400, 75.00, 1, '2024-01-07'),
+(20, 'Baltimore to Boston', 'Baltimore, MD', 'Boston, MA', 400, 72.00, 1, '2024-01-07'),
+(21, 'Hartford to New York', 'Hartford, CT', 'New York, NY', 100, 28.00, 1, '2024-01-07'),
+(22, 'Providence to Philadelphia', 'Providence, RI', 'Philadelphia, PA', 280, 55.00, 1, '2024-01-08');
+
+SET IDENTITY_INSERT [Routes] OFF;
 GO
 
--- =============================================
--- 4. SEED SCHEDULES TABLE (20+ rows)
--- =============================================
-IF NOT EXISTS (SELECT 1 FROM Schedules WHERE ScheduleId = 1)
-BEGIN
-    SET IDENTITY_INSERT Schedules ON;
-    
-    INSERT INTO Schedules (ScheduleId, RouteId, BusId, DepartureTime, ArrivalTime, Fare, IsActive, CreatedAt, UpdatedAt)
-    VALUES
-    (1, 1, 1, '2024-01-10 08:00:00', '2024-01-10 14:30:00', 45.00, 1, GETDATE(), GETDATE()),
-    (2, 1, 2, '2024-01-10 10:00:00', '2024-01-10 16:30:00', 48.00, 1, GETDATE(), GETDATE()),
-    (3, 1, 3, '2024-01-10 14:00:00', '2024-01-10 20:30:00', 45.00, 1, GETDATE(), GETDATE()),
-    (4, 2, 4, '2024-01-10 06:00:00', '2024-01-10 13:00:00', 58.00, 1, GETDATE(), GETDATE()),
-    (5, 2, 5, '2024-01-10 12:00:00', '2024-01-10 19:00:00', 55.00, 1, GETDATE(), GETDATE()),
-    (6, 3, 6, '2024-01-10 07:00:00', '2024-01-10 10:00:00', 35.00, 1, GETDATE(), GETDATE()),
-    (7, 3, 7, '2024-01-10 15:00:00', '2024-01-10 18:00:00', 35.00, 1, GETDATE(), GETDATE()),
-    (8, 4, 8, '2024-01-10 08:00:00', '2024-01-10 18:00:00', 85.00, 1, GETDATE(), GETDATE()),
-    (9, 4, 9, '2024-01-10 20:00:00', '2024-01-11 06:00:00', 90.00, 1, GETDATE(), GETDATE()),
-    (10, 5, 10, '2024-01-10 09:00:00', '2024-01-10 20:00:00', 98.00, 1, GETDATE(), GETDATE()),
-    (11, 6, 11, '2024-01-10 06:00:00', '2024-01-10 12:00:00', 52.00, 1, GETDATE(), GETDATE()),
-    (12, 6, 12, '2024-01-10 14:00:00', '2024-01-10 20:00:00', 50.00, 1, GETDATE(), GETDATE()),
-    (13, 7, 13, '2024-01-10 08:00:00', '2024-01-10 12:00:00', 42.00, 1, GETDATE(), GETDATE()),
-    (14, 7, 14, '2024-01-10 16:00:00', '2024-01-10 20:00:00', 42.00, 1, GETDATE(), GETDATE()),
-    (15, 8, 15, '2024-01-10 07:00:00', '2024-01-10 14:00:00', 65.00, 1, GETDATE(), GETDATE()),
-    (16, 8, 16, '2024-01-10 19:00:00', '2024-01-11 02:00:00', 65.00, 1, GETDATE(), GETDATE()),
-    (17, 9, 17, '2024-01-10 09:00:00', '2024-01-10 16:00:00', 58.00, 1, GETDATE(), GETDATE()),
-    (18, 10, 18, '2024-01-10 08:00:00', '2024-01-10 15:00:00', 78.00, 1, GETDATE(), GETDATE()),
-    (19, 11, 19, '2024-01-10 10:00:00', '2024-01-11 03:00:00', 115.00, 1, GETDATE(), GETDATE()),
-    (20, 12, 20, '2024-01-10 07:00:00', '2024-01-10 11:00:00', 42.00, 1, GETDATE(), GETDATE()),
-    (21, 13, 21, '2024-01-10 12:00:00', '2024-01-11 00:00:00', 98.00, 1, GETDATE(), GETDATE()),
-    (22, 14, 22, '2024-01-10 08:00:00', '2024-01-11 05:00:00', 135.00, 1, GETDATE(), GETDATE());
-    
-    SET IDENTITY_INSERT Schedules OFF;
-END
+-- ========================================
+-- SEED SCHEDULES (22 rows)
+-- ========================================
+SET IDENTITY_INSERT [Schedules] ON;
+
+INSERT INTO [Schedules] ([ScheduleId], [RouteId], [BusId], [DepartureTime], [ArrivalTime], [Fare], [IsActive], [CreatedAt])
+VALUES
+(1, 1, 1, '2024-01-10 06:00:00', '2024-01-10 14:00:00', 45.00, 1, '2024-01-01'),
+(2, 2, 2, '2024-01-10 07:00:00', '2024-01-10 16:00:00', 55.00, 1, '2024-01-01'),
+(3, 3, 3, '2024-01-10 08:00:00', '2024-01-10 18:00:00', 65.00, 1, '2024-01-01'),
+(4, 4, 4, '2024-01-10 09:00:00', '2024-01-10 13:00:00', 50.00, 1, '2024-01-02'),
+(5, 5, 5, '2024-01-10 10:00:00', '2024-01-10 14:00:00', 48.00, 1, '2024-01-02'),
+(6, 6, 6, '2024-01-10 06:30:00', '2024-01-10 09:30:00', 35.00, 1, '2024-01-02'),
+(7, 7, 7, '2024-01-10 11:00:00', '2024-01-10 15:00:00', 52.00, 1, '2024-01-03'),
+(8, 8, 8, '2024-01-10 12:00:00', '2024-01-10 15:00:00', 42.00, 1, '2024-01-03'),
+(9, 9, 9, '2024-01-10 05:00:00', '2024-01-10 14:00:00', 85.00, 1, '2024-01-03'),
+(10, 10, 10, '2024-01-10 13:00:00', '2024-01-10 18:00:00', 60.00, 1, '2024-01-04'),
+(11, 11, 11, '2024-01-10 14:00:00', '2024-01-10 16:00:00', 28.00, 1, '2024-01-04'),
+(12, 12, 12, '2024-01-10 15:00:00', '2024-01-10 16:30:00', 22.00, 1, '2024-01-04'),
+(13, 13, 13, '2024-01-10 07:00:00', '2024-01-10 13:00:00', 62.00, 1, '2024-01-05'),
+(14, 14, 14, '2024-01-10 08:00:00', '2024-01-10 12:00:00', 50.00, 1, '2024-01-05'),
+(15, 15, 15, '2024-01-10 09:00:00', '2024-01-10 11:30:00', 32.00, 1, '2024-01-05'),
+(16, 16, 16, '2024-01-10 10:00:00', '2024-01-10 11:40:00', 25.00, 1, '2024-01-06'),
+(17, 17, 17, '2024-01-10 11:00:00', '2024-01-10 15:00:00', 50.00, 1, '2024-01-06'),
+(18, 18, 18, '2024-01-10 12:00:00', '2024-01-10 14:50:00', 38.00, 1, '2024-01-06'),
+(19, 19, 19, '2024-01-10 04:00:00', '2024-01-10 11:00:00', 75.00, 1, '2024-01-07'),
+(20, 20, 20, '2024-01-10 05:30:00', '2024-01-10 13:30:00', 72.00, 1, '2024-01-07'),
+(21, 21, 21, '2024-01-10 14:00:00', '2024-01-10 15:40:00', 28.00, 1, '2024-01-07'),
+(22, 22, 22, '2024-01-10 06:00:00', '2024-01-10 11:00:00', 55.00, 1, '2024-01-08');
+
+SET IDENTITY_INSERT [Schedules] OFF;
 GO
 
--- =============================================
--- 5. SEED BOOKINGS TABLE (20+ rows)
--- =============================================
-IF NOT EXISTS (SELECT 1 FROM Bookings WHERE BookingId = 1)
-BEGIN
-    SET IDENTITY_INSERT Bookings ON;
-    
-    INSERT INTO Bookings (BookingId, ScheduleId, UserId, PassengerName, PassengerEmail, PassengerPhone, Seats, TotalAmount, Status, BookedAt, TravelDate, CreatedAt, UpdatedAt)
-    VALUES
-    (1, 1, 2, 'John Smith', 'john.smith@example.com', '555-0001', '1,2,3', 135.00, 'Confirmed', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (2, 1, 3, 'Sarah Johnson', 'sarah.j@example.com', '555-0002', '4,5', 90.00, 'Confirmed', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (3, 2, 4, 'Michael Brown', 'mbrown@example.com', '555-0003', '1', 48.00, 'Pending', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (4, 2, 5, 'Emily Davis', 'edavis@example.com', '555-0004', '2,3,4', 144.00, 'Confirmed', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (5, 3, 6, 'David Miller', 'dmiller@example.com', '555-0005', '10,11,12,13,14', 225.00, 'Confirmed', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (6, 4, 7, 'Jessica Wilson', 'jwilson@example.com', '555-0006', '1', 58.00, 'Confirmed', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (7, 4, 8, 'Robert Moore', 'rmoore@example.com', '555-0007', '2,3', 116.00, 'Pending', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (8, 5, 9, 'Amanda Taylor', 'ataylor@example.com', '555-0008', '1,2,3,4', 220.00, 'Confirmed', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (9, 5, 10, 'Christopher Anderson', 'canderson@example.com', '555-0009', '5', 98.00, 'Cancelled', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (10, 6, 11, 'Rachel Thomas', 'rthomas@example.com', '555-0010', '1,2', 70.00, 'Confirmed', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (11, 7, 12, 'James Jackson', 'jjackson@example.com', '555-0011', '3,4,5', 105.00, 'Confirmed', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (12, 8, 13, 'Laura White', 'lwhite@example.com', '555-0012', '1', 85.00, 'Confirmed', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (13, 8, 14, 'William Harris', 'wharris@example.com', '555-0013', '2,3,4,5,6', 425.00, 'Pending', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (14, 9, 15, 'Sophia Martin', 'smartin@example.com', '555-0014', '10', 90.00, 'Confirmed', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (15, 10, 16, 'Daniel Garcia', 'dgarcia@example.com', '555-0015', '1,2,3,4', 392.00, 'Confirmed', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (16, 11, 17, 'Olivia Rodriguez', 'orodriguez@example.com', '555-0016', '5,6,7', 156.00, 'Confirmed', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (17, 12, 18, 'Matthew Jones', 'mjones@example.com', '555-0017', '1', 52.00, 'Pending', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (18, 13, 19, 'Ava Lee', 'alee@example.com', '555-0018', '2,3,4,5,6,7', 588.00, 'Confirmed', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (19, 14, 20, 'Ethan Walker', 'ewalker@example.com', '555-0019', '1,2', 270.00, 'Confirmed', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (20, 15, 21, 'Isabella Hall', 'ihall@example.com', '555-0020', '3', 65.00, 'Cancelled', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (21, 16, 22, 'Mason Young', 'myoung@example.com', '555-0021', '1,2,3,4,5', 325.00, 'Confirmed', GETDATE(), '2024-01-10', GETDATE(), GETDATE()),
-    (22, 17, 2, 'John Smith', 'john.smith@example.com', '555-0001', '1', 58.00, 'Pending', GETDATE(), '2024-01-10', GETDATE(), GETDATE());
-    
-    SET IDENTITY_INSERT Bookings OFF;
-END
+-- ========================================
+-- SEED BOOKINGS (22 rows - Mixed Status)
+-- ========================================
+SET IDENTITY_INSERT [Bookings] ON;
+
+INSERT INTO [Bookings] ([BookingId], [ScheduleId], [UserId], [PassengerName], [TotalAmount], [Status], [BookedAt], [TravelDate])
+VALUES
+(1, 1, 2, 'John Doe', 45.00, 'Confirmed', '2024-01-08 10:00:00', '2024-01-10'),
+(2, 2, 3, 'Jane Smith', 110.00, 'Confirmed', '2024-01-08 11:00:00', '2024-01-10'),
+(3, 3, 4, 'Michael Brown', 65.00, 'Confirmed', '2024-01-08 12:00:00', '2024-01-10'),
+(4, 4, 5, 'Emily Davis', 100.00, 'Confirmed', '2024-01-08 13:00:00', '2024-01-10'),
+(5, 5, 6, 'Robert Wilson', 48.00, 'Confirmed', '2024-01-08 14:00:00', '2024-01-10'),
+(6, 6, 7, 'Sarah Miller', 70.00, 'Confirmed', '2024-01-08 15:00:00', '2024-01-10'),
+(7, 7, 8, 'David Moore', 104.00, 'Confirmed', '2024-01-08 16:00:00', '2024-01-10'),
+(8, 8, 9, 'Lisa Taylor', 84.00, 'Confirmed', '2024-01-08 17:00:00', '2024-01-10'),
+(9, 9, 10, 'James Anderson', 85.00, 'Pending', '2024-01-09 08:00:00', '2024-01-10'),
+(10, 10, 11, 'Jennifer Thomas', 120.00, 'Pending', '2024-01-09 09:00:00', '2024-01-10'),
+(11, 11, 12, 'William Jackson', 56.00, 'Pending', '2024-01-09 10:00:00', '2024-01-10'),
+(12, 12, 13, 'Patricia White', 44.00, 'Pending', '2024-01-09 11:00:00', '2024-01-10'),
+(13, 13, 14, 'Charles Harris', 124.00, 'Confirmed', '2024-01-09 12:00:00', '2024-01-10'),
+(14, 14, 15, 'Karen Martin', 100.00, 'Confirmed', '2024-01-09 13:00:00', '2024-01-10'),
+(15, 15, 16, 'Richard Garcia', 64.00, 'Confirmed', '2024-01-09 14:00:00', '2024-01-10'),
+(16, 16, 17, 'Nancy Rodriguez', 50.00, 'Cancelled', '2024-01-09 15:00:00', '2024-01-10'),
+(17, 17, 18, 'Thomas Lee', 100.00, 'Cancelled', '2024-01-09 16:00:00', '2024-01-10'),
+(18, 18, 19, 'Dorothy Perez', 76.00, 'Cancelled', '2024-01-09 17:00:00', '2024-01-10'),
+(19, 19, 20, 'Christopher Edwards', 150.00, 'Confirmed', '2024-01-09 18:00:00', '2024-01-10'),
+(20, 20, 21, 'Margaret Collins', 144.00, 'Confirmed', '2024-01-09 19:00:00', '2024-01-10'),
+(21, 21, 22, 'Daniel Stewart', 56.00, 'Confirmed', '2024-01-09 20:00:00', '2024-01-10'),
+(22, 22, 2, 'John Doe', 110.00, 'Confirmed', '2024-01-09 21:00:00', '2024-01-10');
+
+SET IDENTITY_INSERT [Bookings] OFF;
 GO
 
--- =============================================
--- 6. SEED DRIVERS TABLE (20+ rows)
--- =============================================
-IF NOT EXISTS (SELECT 1 FROM Drivers WHERE DriverId = 1)
-BEGIN
-    SET IDENTITY_INSERT Drivers ON;
-    
-    INSERT INTO Drivers (DriverId, FirstName, LastName, LicenseNumber, LicenseExpiry, PhoneNumber, Email, DateOfBirth, Address, City, State, ZipCode, IsActive, CreatedAt, UpdatedAt)
-    VALUES
-    (1, 'John', 'Driver', 'DL12345001', '2026-12-31', '555-1001', 'john.driver@example.com', '1985-05-15', '123 Main St', 'New York', 'NY', '10001', 1, GETDATE(), GETDATE()),
-    (2, 'Michael', 'Johnson', 'DL12345002', '2025-08-15', '555-1002', 'michael.j@example.com', '1988-08-22', '456 Oak Ave', 'Boston', 'MA', '02101', 1, GETDATE(), GETDATE()),
-    (3, 'David', 'Smith', 'DL12345003', '2026-06-30', '555-1003', 'david.smith@example.com', '1980-03-10', '789 Elm St', 'Philadelphia', 'PA', '19101', 1, GETDATE(), GETDATE()),
-    (4, 'Robert', 'Brown', 'DL12345004', '2025-12-31', '555-1004', 'robert.brown@example.com', '1982-07-18', '321 Pine Rd', 'Washington', 'DC', '20001', 1, GETDATE(), GETDATE()),
-    (5, 'James', 'Miller', 'DL12345005', '2026-03-15', '555-1005', 'james.miller@example.com', '1987-11-25', '654 Maple Dr', 'Atlanta', 'GA', '30301', 1, GETDATE(), GETDATE()),
-    (6, 'William', 'Wilson', 'DL12345006', '2025-09-20', '555-1006', 'william.w@example.com', '1983-02-14', '987 Cedar Ln', 'Miami', 'FL', '33101', 1, GETDATE(), GETDATE()),
-    (7, 'Charles', 'Moore', 'DL12345007', '2026-05-10', '555-1007', 'charles.m@example.com', '1986-09-08', '147 Birch Blvd', 'Chicago', 'IL', '60601', 1, GETDATE(), GETDATE()),
-    (8, 'Richard', 'Taylor', 'DL12345008', '2025-11-30', '555-1008', 'richard.t@example.com', '1981-01-22', '258 Spruce Way', 'Detroit', 'MI', '48201', 1, GETDATE(), GETDATE()),
-    (9, 'Joseph', 'Anderson', 'DL12345009', '2026-07-14', '555-1009', 'joseph.a@example.com', '1984-04-17', '369 Ash Court', 'Houston', 'TX', '77001', 1, GETDATE(), GETDATE()),
-    (10, 'Thomas', 'Thomas', 'DL12345010', '2025-10-25', '555-1010', 'thomas.t@example.com', '1989-06-30', '741 Oak Drive', 'Dallas', 'TX', '75201', 1, GETDATE(), GETDATE()),
-    (11, 'Christopher', 'Jackson', 'DL12345011', '2026-04-20', '555-1011', 'christopher.j@example.com', '1982-08-12', '852 Maple Lane', 'Los Angeles', 'CA', '90001', 1, GETDATE(), GETDATE()),
-    (12, 'Daniel', 'White', 'DL12345012', '2025-12-15', '555-1012', 'daniel.w@example.com', '1985-10-05', '963 Pine Court', 'San Francisco', 'CA', '94101', 1, GETDATE(), GETDATE()),
-    (13, 'Matthew', 'Harris', 'DL12345013', '2026-06-30', '555-1013', 'matthew.h@example.com', '1987-03-19', '159 Cedar Street', 'Seattle', 'WA', '98101', 1, GETDATE(), GETDATE()),
-    (14, 'Anthony', 'Martin', 'DL12345014', '2025-09-10', '555-1014', 'anthony.m@example.com', '1983-11-28', '753 Elm Avenue', 'Portland', 'OR', '97201', 1, GETDATE(), GETDATE()),
-    (15, 'Mark', 'Garcia', 'DL12345015', '2026-02-14', '555-1015', 'mark.g@example.com', '1986-05-09', '951 Birch Road', 'Las Vegas', 'NV', '89101', 1, GETDATE(), GETDATE()),
-    (16, 'Donald', 'Rodriguez', 'DL12345016', '2025-08-20', '555-1016', 'donald.r@example.com', '1984-12-02', '357 Spruce Drive', 'Phoenix', 'AZ', '85001', 1, GETDATE(), GETDATE()),
-    (17, 'Steven', 'Lee', 'DL12345017', '2026-01-31', '555-1017', 'steven.l@example.com', '1981-07-16', '654 Ash Lane', 'Denver', 'CO', '80201', 1, GETDATE(), GETDATE()),
-    (18, 'Paul', 'Walker', 'DL12345018', '2025-11-05', '555-1018', 'paul.w@example.com', '1988-04-23', '852 Oak Street', 'New Orleans', 'LA', '70112', 1, GETDATE(), GETDATE()),
-    (19, 'Andrew', 'Hall', 'DL12345019', '2026-03-28', '555-1019', 'andrew.h@example.com', '1983-09-11', '147 Maple Drive', 'Memphis', 'TN', '37501', 1, GETDATE(), GETDATE()),
-    (20, 'Joshua', 'Young', 'DL12345020', '2025-10-10', '555-1020', 'joshua.y@example.com', '1985-06-07', '456 Cedar Lane', 'San Diego', 'CA', '92101', 1, GETDATE(), GETDATE()),
-    (21, 'Kenneth', 'Hernandez', 'DL12345021', '2026-04-15', '555-1021', 'kenneth.h@example.com', '1982-02-20', '789 Pine Drive', 'Tampa', 'FL', '33602', 1, GETDATE(), GETDATE()),
-    (22, 'Kevin', 'Lopez', 'DL12345022', '2025-12-22', '555-1022', 'kevin.l@example.com', '1987-08-13', '321 Elm Street', 'Toronto', 'ON', 'M1A 1A1', 1, GETDATE(), GETDATE());
-    
-    SET IDENTITY_INSERT Drivers OFF;
-END
+-- ========================================
+-- SEED DRIVERS (22 rows)
+-- ========================================
+SET IDENTITY_INSERT [Drivers] ON;
+
+INSERT INTO [Drivers] ([DriverId], [Name], [LicenseNumber], [LicenseExpiryDate], [City], [Phone], [IsActive], [CreatedAt])
+VALUES
+(1, 'Anthony Garcia', 'DL001', '2025-12-31', 'New York, NY', '555-0001', 1, '2024-01-01'),
+(2, 'Marcus Johnson', 'DL002', '2025-12-31', 'Chicago, IL', '555-0002', 1, '2024-01-01'),
+(3, 'David Martinez', 'DL003', '2025-12-31', 'Los Angeles, CA', '555-0003', 1, '2024-01-01'),
+(4, 'Joseph Robinson', 'DL004', '2026-06-30', 'Dallas, TX', '555-0004', 1, '2024-01-02'),
+(5, 'Vincent Lee', 'DL005', '2026-06-30', 'Miami, FL', '555-0005', 1, '2024-01-02'),
+(6, 'Frank Rodriguez', 'DL006', '2026-06-30', 'Philadelphia, PA', '555-0006', 1, '2024-01-02'),
+(7, 'Brian Young', 'DL007', '2025-12-31', 'Atlanta, GA', '555-0007', 1, '2024-01-03'),
+(8, 'Richard White', 'DL008', '2025-12-31', 'Seattle, WA', '555-0008', 1, '2024-01-03'),
+(9, 'Samuel Hernandez', 'DL009', '2025-12-31', 'Denver, CO', '555-0009', 1, '2024-01-03'),
+(10, 'Jason Green', 'DL010', '2026-06-30', 'Phoenix, AZ', '555-0010', 1, '2024-01-04'),
+(11, 'Matthew King', 'DL011', '2026-06-30', 'San Diego, CA', '555-0011', 1, '2024-01-04'),
+(12, 'Andrew Scott', 'DL012', '2026-06-30', 'Austin, TX', '555-0012', 1, '2024-01-04'),
+(13, 'Gary Ramirez', 'DL013', '2025-12-31', 'Minneapolis, MN', '555-0013', 1, '2024-01-05'),
+(14, 'Eric Stewart', 'DL014', '2025-12-31', 'Kansas City, MO', '555-0014', 1, '2024-01-05'),
+(15, 'Stephen Sanchez', 'DL015', '2025-12-31', 'Pittsburgh, PA', '555-0015', 1, '2024-01-05'),
+(16, 'Paul Bell', 'DL016', '2026-06-30', 'Louisville, KY', '555-0016', 1, '2024-01-06'),
+(17, 'Mark Jimenez', 'DL017', '2026-06-30', 'Charlotte, NC', '555-0017', 1, '2024-01-06'),
+(18, 'Donald Brewer', 'DL018', '2026-06-30', 'Raleigh, NC', '555-0018', 1, '2024-01-06'),
+(19, 'Steven Caldwell', 'DL019', '2025-12-31', 'Birmingham, AL', '555-0019', 1, '2024-01-07'),
+(20, 'Paul Curry', 'DL020', '2025-12-31', 'Baltimore, MD', '555-0020', 1, '2024-01-07'),
+(21, 'Mark Simmons', 'DL021', '2025-12-31', 'Hartford, CT', '555-0021', 1, '2024-01-07'),
+(22, 'Donald Mills', 'DL022', '2026-06-30', 'Providence, RI', '555-0022', 1, '2024-01-08');
+
+SET IDENTITY_INSERT [Drivers] OFF;
 GO
 
--- =============================================
--- 7. SEED HOSTESSES TABLE (20+ rows)
--- =============================================
-IF NOT EXISTS (SELECT 1 FROM Hostesses WHERE HostessId = 1)
-BEGIN
-    SET IDENTITY_INSERT Hostesses ON;
-    
-    INSERT INTO Hostesses (HostessId, FirstName, LastName, PhoneNumber, Email, EmergencyContactName, EmergencyContactPhone, ShiftPreference, IsActive, CreatedAt, UpdatedAt)
-    VALUES
-    (1, 'Maria', 'Garcia', '555-2001', 'maria.garcia@example.com', 'Carlos Garcia', '555-2001E', 'Morning', 1, GETDATE(), GETDATE()),
-    (2, 'Sofia', 'Rodriguez', '555-2002', 'sofia.r@example.com', 'Miguel Rodriguez', '555-2002E', 'Evening', 1, GETDATE(), GETDATE()),
-    (3, 'Elena', 'Martinez', '555-2003', 'elena.m@example.com', 'Juan Martinez', '555-2003E', 'Night', 1, GETDATE(), GETDATE()),
-    (4, 'Carmen', 'Lopez', '555-2004', 'carmen.l@example.com', 'Antonio Lopez', '555-2004E', 'Morning', 1, GETDATE(), GETDATE()),
-    (5, 'Rosa', 'Gonzalez', '555-2005', 'rosa.g@example.com', 'Diego Gonzalez', '555-2005E', 'Evening', 1, GETDATE(), GETDATE()),
-    (6, 'Angela', 'Fernandez', '555-2006', 'angela.f@example.com', 'Pedro Fernandez', '555-2006E', 'Morning', 1, GETDATE(), GETDATE()),
-    (7, 'Isabella', 'Sanchez', '555-2007', 'isabella.s@example.com', 'Luis Sanchez', '555-2007E', 'Night', 1, GETDATE(), GETDATE()),
-    (8, 'Francesca', 'Ramirez', '555-2008', 'francesca.r@example.com', 'Manuel Ramirez', '555-2008E', 'Morning', 1, GETDATE(), GETDATE()),
-    (9, 'Giulia', 'Torres', '555-2009', 'giulia.t@example.com', 'Roberto Torres', '555-2009E', 'Evening', 1, GETDATE(), GETDATE()),
-    (10, 'Lucia', 'Rivera', '555-2010', 'lucia.r@example.com', 'Francisco Rivera', '555-2010E', 'Night', 1, GETDATE(), GETDATE()),
-    (11, 'Alessandra', 'Cruz', '555-2011', 'alessandra.c@example.com', 'Vicente Cruz', '555-2011E', 'Morning', 1, GETDATE(), GETDATE()),
-    (12, 'Valentina', 'Morales', '555-2012', 'valentina.m@example.com', 'Alberto Morales', '555-2012E', 'Evening', 1, GETDATE(), GETDATE()),
-    (13, 'Adriana', 'Ortiz', '555-2013', 'adriana.o@example.com', 'Javier Ortiz', '555-2013E', 'Night', 1, GETDATE(), GETDATE()),
-    (14, 'Camilla', 'Jimenez', '555-2014', 'camilla.j@example.com', 'Salvador Jimenez', '555-2014E', 'Morning', 1, GETDATE(), GETDATE()),
-    (15, 'Emilia', 'Castillo', '555-2015', 'emilia.c@example.com', 'Enrique Castillo', '555-2015E', 'Evening', 1, GETDATE(), GETDATE()),
-    (16, 'Olivia', 'Herrera', '555-2016', 'olivia.h@example.com', 'Ricardo Herrera', '555-2016E', 'Night', 1, GETDATE(), GETDATE()),
-    (17, 'Sophia', 'Dominguez', '555-2017', 'sophia.d@example.com', 'Miguel Dominguez', '555-2017E', 'Morning', 1, GETDATE(), GETDATE()),
-    (18, 'Victoria', 'Vargas', '555-2018', 'victoria.v@example.com', 'Fernando Vargas', '555-2018E', 'Evening', 1, GETDATE(), GETDATE()),
-    (19, 'Constanza', 'Medina', '555-2019', 'constanza.m@example.com', 'Sergio Medina', '555-2019E', 'Night', 1, GETDATE(), GETDATE()),
-    (20, 'Mariana', 'Soto', '555-2020', 'mariana.s@example.com', 'Jorge Soto', '555-2020E', 'Morning', 1, GETDATE(), GETDATE()),
-    (21, 'Catalina', 'Flores', '555-2021', 'catalina.f@example.com', 'Oscar Flores', '555-2021E', 'Evening', 1, GETDATE(), GETDATE()),
-    (22, 'Daniela', 'Campos', '555-2022', 'daniela.c@example.com', 'Rafael Campos', '555-2022E', 'Night', 1, GETDATE(), GETDATE());
-    
-    SET IDENTITY_INSERT Hostesses OFF;
-END
+-- ========================================
+-- SEED HOSTESSES (22 rows)
+-- ========================================
+SET IDENTITY_INSERT [Hostesses] ON;
+
+INSERT INTO [Hostesses] ([HostessId], [Name], [ShiftPreference], [City], [EmergencyContact], [IsActive], [CreatedAt])
+VALUES
+(1, 'Angela Martinez', 'Morning', 'New York, NY', '555-1001', 1, '2024-01-01'),
+(2, 'Brenda Johnson', 'Evening', 'Chicago, IL', '555-1002', 1, '2024-01-01'),
+(3, 'Carla Rodriguez', 'Night', 'Los Angeles, CA', '555-1003', 1, '2024-01-01'),
+(4, 'Diana Brown', 'Morning', 'Dallas, TX', '555-1004', 1, '2024-01-02'),
+(5, 'Eleanor Davis', 'Evening', 'Miami, FL', '555-1005', 1, '2024-01-02'),
+(6, 'Frances Garcia', 'Night', 'Philadelphia, PA', '555-1006', 1, '2024-01-02'),
+(7, 'Grace Wilson', 'Morning', 'Atlanta, GA', '555-1007', 1, '2024-01-03'),
+(8, 'Helen Anderson', 'Evening', 'Seattle, WA', '555-1008', 1, '2024-01-03'),
+(9, 'Ida Taylor', 'Night', 'Denver, CO', '555-1009', 1, '2024-01-03'),
+(10, 'Jackie Thompson', 'Morning', 'Phoenix, AZ', '555-1010', 1, '2024-01-04'),
+(11, 'Karen Jackson', 'Evening', 'San Diego, CA', '555-1011', 1, '2024-01-04'),
+(12, 'Laura White', 'Night', 'Austin, TX', '555-1012', 1, '2024-01-04'),
+(13, 'Maria Harris', 'Morning', 'Minneapolis, MN', '555-1013', 1, '2024-01-05'),
+(14, 'Nancy Martin', 'Evening', 'Kansas City, MO', '555-1014', 1, '2024-01-05'),
+(15, 'Olivia Lee', 'Night', 'Pittsburgh, PA', '555-1015', 1, '2024-01-05'),
+(16, 'Pamela Perez', 'Morning', 'Louisville, KY', '555-1016', 1, '2024-01-06'),
+(17, 'Quinn Edwards', 'Evening', 'Charlotte, NC', '555-1017', 1, '2024-01-06'),
+(18, 'Rachel Collins', 'Night', 'Raleigh, NC', '555-1018', 1, '2024-01-06'),
+(19, 'Sandra Stewart', 'Morning', 'Birmingham, AL', '555-1019', 1, '2024-01-07'),
+(20, 'Tina Sanchez', 'Evening', 'Baltimore, MD', '555-1020', 1, '2024-01-07'),
+(21, 'Ursula Morris', 'Night', 'Hartford, CT', '555-1021', 1, '2024-01-07'),
+(22, 'Violet Rogers', 'Morning', 'Providence, RI', '555-1022', 1, '2024-01-08');
+
+SET IDENTITY_INSERT [Hostesses] OFF;
 GO
 
--- =============================================
--- 8. SEED PAYMENTS TABLE (20+ rows)
--- =============================================
-IF NOT EXISTS (SELECT 1 FROM Payments WHERE PaymentId = 1)
-BEGIN
-    SET IDENTITY_INSERT Payments ON;
-    
-    INSERT INTO Payments (PaymentId, BookingId, Amount, PaymentMethod, TransactionId, Status, PaymentDate, CreatedAt, UpdatedAt)
-    VALUES
-    (1, 1, 135.00, 'Credit Card', 'TXN20240110001', 'Completed', GETDATE(), GETDATE(), GETDATE()),
-    (2, 2, 90.00, 'Debit Card', 'TXN20240110002', 'Completed', GETDATE(), GETDATE(), GETDATE()),
-    (3, 3, 48.00, 'Net Banking', 'TXN20240110003', 'Pending', GETDATE(), GETDATE(), GETDATE()),
-    (4, 4, 144.00, 'Credit Card', 'TXN20240110004', 'Completed', GETDATE(), GETDATE(), GETDATE()),
-    (5, 5, 225.00, 'UPI', 'TXN20240110005', 'Completed', GETDATE(), GETDATE(), GETDATE()),
-    (6, 6, 58.00, 'Credit Card', 'TXN20240110006', 'Completed', GETDATE(), GETDATE(), GETDATE()),
-    (7, 7, 116.00, 'Debit Card', 'TXN20240110007', 'Pending', GETDATE(), GETDATE(), GETDATE()),
-    (8, 8, 220.00, 'Net Banking', 'TXN20240110008', 'Completed', GETDATE(), GETDATE(), GETDATE()),
-    (9, 9, 98.00, 'Credit Card', 'TXN20240110009', 'Refunded', GETDATE(), GETDATE(), GETDATE()),
-    (10, 10, 70.00, 'UPI', 'TXN20240110010', 'Completed', GETDATE(), GETDATE(), GETDATE()),
-    (11, 11, 105.00, 'Credit Card', 'TXN20240110011', 'Completed', GETDATE(), GETDATE(), GETDATE()),
-    (12, 12, 85.00, 'Debit Card', 'TXN20240110012', 'Completed', GETDATE(), GETDATE(), GETDATE()),
-    (13, 13, 425.00, 'Net Banking', 'TXN20240110013', 'Pending', GETDATE(), GETDATE(), GETDATE()),
-    (14, 14, 90.00, 'Credit Card', 'TXN20240110014', 'Completed', GETDATE(), GETDATE(), GETDATE()),
-    (15, 15, 392.00, 'UPI', 'TXN20240110015', 'Completed', GETDATE(), GETDATE(), GETDATE()),
-    (16, 16, 156.00, 'Credit Card', 'TXN20240110016', 'Completed', GETDATE(), GETDATE(), GETDATE()),
-    (17, 17, 52.00, 'Debit Card', 'TXN20240110017', 'Pending', GETDATE(), GETDATE(), GETDATE()),
-    (18, 18, 588.00, 'Net Banking', 'TXN20240110018', 'Completed', GETDATE(), GETDATE(), GETDATE()),
-    (19, 19, 270.00, 'Credit Card', 'TXN20240110019', 'Completed', GETDATE(), GETDATE(), GETDATE()),
-    (20, 20, 65.00, 'UPI', 'TXN20240110020', 'Refunded', GETDATE(), GETDATE(), GETDATE()),
-    (21, 21, 325.00, 'Credit Card', 'TXN20240110021', 'Completed', GETDATE(), GETDATE(), GETDATE()),
-    (22, 22, 58.00, 'Debit Card', 'TXN20240110022', 'Pending', GETDATE(), GETDATE(), GETDATE());
-    
-    SET IDENTITY_INSERT Payments OFF;
-END
+-- ========================================
+-- SEED PAYMENTS (22 rows)
+-- ========================================
+SET IDENTITY_INSERT [Payments] ON;
+
+INSERT INTO [Payments] ([PaymentId], [BookingId], [Amount], [PaymentMethod], [Status], [TransactionId], [PaymentDate])
+VALUES
+(1, 1, 45.00, 'Credit Card', 'Completed', 'TXN001', '2024-01-08 10:30:00'),
+(2, 2, 110.00, 'Debit Card', 'Completed', 'TXN002', '2024-01-08 11:30:00'),
+(3, 3, 65.00, 'Net Banking', 'Completed', 'TXN003', '2024-01-08 12:30:00'),
+(4, 4, 100.00, 'UPI', 'Completed', 'TXN004', '2024-01-08 13:30:00'),
+(5, 5, 48.00, 'Credit Card', 'Completed', 'TXN005', '2024-01-08 14:30:00'),
+(6, 6, 70.00, 'Debit Card', 'Completed', 'TXN006', '2024-01-08 15:30:00'),
+(7, 7, 104.00, 'Net Banking', 'Completed', 'TXN007', '2024-01-08 16:30:00'),
+(8, 8, 84.00, 'UPI', 'Completed', 'TXN008', '2024-01-08 17:30:00'),
+(9, 9, 85.00, 'Credit Card', 'Pending', 'TXN009', '2024-01-09 08:30:00'),
+(10, 10, 120.00, 'Debit Card', 'Pending', 'TXN010', '2024-01-09 09:30:00'),
+(11, 11, 56.00, 'Net Banking', 'Pending', 'TXN011', '2024-01-09 10:30:00'),
+(12, 12, 44.00, 'UPI', 'Pending', 'TXN012', '2024-01-09 11:30:00'),
+(13, 13, 124.00, 'Credit Card', 'Completed', 'TXN013', '2024-01-09 12:30:00'),
+(14, 14, 100.00, 'Debit Card', 'Completed', 'TXN014', '2024-01-09 13:30:00'),
+(15, 15, 64.00, 'Net Banking', 'Completed', 'TXN015', '2024-01-09 14:30:00'),
+(16, 16, 50.00, 'UPI', 'Refunded', 'TXN016', '2024-01-09 15:30:00'),
+(17, 17, 100.00, 'Credit Card', 'Refunded', 'TXN017', '2024-01-09 16:30:00'),
+(18, 18, 76.00, 'Debit Card', 'Completed', 'TXN018', '2024-01-09 17:30:00'),
+(19, 19, 150.00, 'Net Banking', 'Completed', 'TXN019', '2024-01-09 18:30:00'),
+(20, 20, 144.00, 'UPI', 'Completed', 'TXN020', '2024-01-09 19:30:00'),
+(21, 21, 56.00, 'Credit Card', 'Completed', 'TXN021', '2024-01-09 20:30:00'),
+(22, 22, 110.00, 'Debit Card', 'Completed', 'TXN022', '2024-01-09 21:30:00');
+
+SET IDENTITY_INSERT [Payments] OFF;
 GO
 
--- =============================================
--- VERIFICATION
--- =============================================
-SELECT 'Users' AS TableName, COUNT(*) AS RowCount FROM Users
-UNION ALL
-SELECT 'Buses', COUNT(*) FROM Buses
-UNION ALL
-SELECT 'Routes', COUNT(*) FROM Routes
-UNION ALL
-SELECT 'Schedules', COUNT(*) FROM Schedules
-UNION ALL
-SELECT 'Bookings', COUNT(*) FROM Bookings
-UNION ALL
-SELECT 'Drivers', COUNT(*) FROM Drivers
-UNION ALL
-SELECT 'Hostesses', COUNT(*) FROM Hostesses
-UNION ALL
-SELECT 'Payments', COUNT(*) FROM Payments
-ORDER BY TableName;
-GO
-
-PRINT 'Database seed data initialization completed successfully!';
+PRINT N'========================================'
+PRINT N'SEED DATA INSERTED SUCCESSFULLY!'
+PRINT N'========================================'
+PRINT N''
+PRINT N'Data Summary:'
+PRINT N'Users: ' + CAST((SELECT COUNT(*) FROM Users) AS NVARCHAR)
+PRINT N'Buses: ' + CAST((SELECT COUNT(*) FROM Buses) AS NVARCHAR)
+PRINT N'Routes: ' + CAST((SELECT COUNT(*) FROM Routes) AS NVARCHAR)
+PRINT N'Schedules: ' + CAST((SELECT COUNT(*) FROM Schedules) AS NVARCHAR)
+PRINT N'Bookings: ' + CAST((SELECT COUNT(*) FROM Bookings) AS NVARCHAR)
+PRINT N'Drivers: ' + CAST((SELECT COUNT(*) FROM Drivers) AS NVARCHAR)
+PRINT N'Hostesses: ' + CAST((SELECT COUNT(*) FROM Hostesses) AS NVARCHAR)
+PRINT N'Payments: ' + CAST((SELECT COUNT(*) FROM Payments) AS NVARCHAR)
 GO
